@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 
 #-----------------------------------------------------------------------
-# runserver
+# build
 # Author: Bob Dondero
 #-----------------------------------------------------------------------
 
-cp=.
-for jarfile in ~/lib/sqlite/*.jar ~/lib/spark/*.jar; do
+cp=
+for jarfile in ~/lib/spark/*.jar; do
    cp=$cp:$jarfile
 done
 
-java -cp $cp RunServer "$@"
+javac -cp $cp "$@"
