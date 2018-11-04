@@ -65,4 +65,64 @@ class CourseInfo implements Serializable
     {
         return courseid;
     }
+
+    public String getDays()
+    {
+        return days;
+    }
+
+    public String getStartTime()
+    {
+        return startTime;
+    }
+
+    public String getEndTime()
+    {
+        return endTime;
+    }
+
+    public String getBldg()
+    {
+        return bldg;
+    }
+
+    public String getRoomNum()
+    {
+        return roomNum;
+    }
+
+    public String getArea()
+    {
+        return area;
+    }
+
+    public String getTitle()
+    {
+        return title;
+    }
+
+    public String getDescrip()
+    {
+        return descrip;
+    }
+
+    public String getPrereqs()
+    {
+        return prereqs;
+    }
+
+    public String[] getDept()
+    {
+        return dept;
+    }
+
+    public String[] getCourseNum()
+    {
+        return courseNum;
+    }
+
+    public String[] getProfNames()
+    {
+        return profName;
+    }
 }
