@@ -32,8 +32,23 @@ class CourseBasic implements Serializable
         return classid;
     }
 
-    public String getCourseData()
+    public String getDept()
     {
-        return classData;
+        return dept;
+    }
+
+    public String getCourseNum()
+    {
+        return coursenum;
+    }
+
+    public String getArea()
+    {
+        return area;
+    }
+
+    public getTitle()
+    {
+        return title;
     }
 }
