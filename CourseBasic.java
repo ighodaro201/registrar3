@@ -47,7 +47,7 @@ class CourseBasic implements Serializable
         return area;
     }
 
-    public getTitle()
+    public String getTitle()
     {
         return title;
     }
