@@ -1,6 +1,6 @@
 //----------------------------------------------------------------------
 // Database.java
-// Author: Bob Dondero
+// Author: Osita Ighodaro Ben Musoke-Lubega
 //----------------------------------------------------------------------
 
 import java.sql.DriverManager;
