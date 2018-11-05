@@ -20,5 +20,4 @@ It helped with my confidence in coding generally, and helped me further
 understand bash scripts. It also helped me see more clearly how to 
 modularise.
 
-We did not make a footer with our names at the bottom of the pages
-(Delete this once we've implemented it)
+We do not correctly implement the error pages (Delete once done)
