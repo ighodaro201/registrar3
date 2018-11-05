@@ -228,14 +228,15 @@ public class Database
         String[] inputs = {"EAS", "2", "", ""};
         Database database = new Database();
         database.connect();
-        CourseInfo test = database.searchDetails("9032");
+        CourseInfo test = database.searchDetails("8231");
         ArrayList<CourseBasic> test2 = database.searchBasic(inputs);
-        System.out.println(test);
+        
         for (CourseBasic course: test2)
         {
             System.out.println(course);
         }
 
+        System.out.println(test);
         database.disconnect();
    }
 }

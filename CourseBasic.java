@@ -24,7 +24,7 @@ class CourseBasic implements Serializable
 
     public String toString()
     {
-        return classid + "\n" + title + "\n" + dept + " " + coursenum + "\n" + area;
+        return classid + "\n" + title + "\n" + dept + " " + coursenum + "\n" + area + "\n";
     }
 
     public String getClassID()

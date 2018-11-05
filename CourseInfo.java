@@ -53,7 +53,14 @@ class CourseInfo implements Serializable
 
     public String toString()
     {
-        return classid + "\n" + title;
+        String deptAndCourseNum = "";
+        
+        for (int i = 0; i < dept.length; i++)
+        {
+            deptAndCourseNum += dept[i] + " " + courseNum[i] + "\n";
+        }
+
+        return classid + "\n" + courseid + "\n" + title + "\n" + descrip + "\n" + deptAndCourseNum;
     }
 
     public String getClassID()
