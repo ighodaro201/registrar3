@@ -218,12 +218,12 @@ public class Database
    // For testing:
    public static void main(String[] args) throws Exception
    {
-        String[] inputs = {"COS", "2", "", ""};
+        String[] inputs = {"_AS", "", "", ""};
         Database database = new Database();
         database.connect();
         CourseInfo test = database.searchDetails("9032");
         ArrayList<CourseBasic> test2 = database.searchBasic(inputs);
-        //System.out.println(test);
+        System.out.println(test);
         for (CourseBasic course: test2)
         {
             System.out.println(course);
