@@ -48,6 +48,7 @@ public class Database
         {
             inputs[i] = inputs[i].replace("%", "\\%");
             inputs[i] = inputs[i].replace("_", "\\_");
+            if (inputs[i] == null) inputs[i] = "";
         }
 
         value = "\"%" + inputs[0].toUpperCase() + "%\"";
