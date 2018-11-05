@@ -22,6 +22,11 @@ public class Reg
         String[] fields = {dept, coursenum, area, title};
         for (int i = 0; i < fields.length; i++)
             if (fields[i] == null) fields[i] = "";
+        
+        res.cookie("dept", fields[0]);
+        res.cookie("coursenum", fields[1]);
+        res.cookie("area", fields[2]);
+        res.cookie("title", fields[3]);
 
         String html = ""; 
         html += "<!DOCTYPE html>";
@@ -123,6 +128,13 @@ public class Reg
         } 
         html += "</table>";
         html += "</body>";
+
+        html += "<foot>";
+        html += "<hr>";
+        html += "Created by Osita Ighodaro and Ben Musoke-Lubega";
+        html += "<hr>";
+        html += "</foot>";
+        
         html += "</html>";
         return html;    
    }
@@ -130,12 +142,17 @@ public class Reg
    private static String courseDetails(Request req, Response res) throws UnsupportedEncodingException
    {
         String classId = req.queryParams("classid");
+        String dept = req.cookie("dept");
+        String coursenum = req.cookie("coursenum");
+        String area = req.cookie("area");
+        String title = req.cookie("title");
+
 
         String html = ""; 
         html += "<!DOCTYPE html>";
         html += "<html>";
         html += "<head>";
-         html += "<title>Registrar's Office Class Search</title>";
+        html += "<title>Registrar's Office Class Search</title>";
         html += "</head>";
         html += "<body>";
         html += "<h1>Registrar's Office</h1>";
@@ -205,15 +222,19 @@ public class Reg
             html += info.getProfNames()[i];
         }
 
-        html += "<br>";
-
-
         html += "<hr>";
+        html += "<p>";
         html += "Click here to do ";
-        html += "<a href=\"index\">another class search </a>.";
-        html += "<hr>";
-
+        html += "<a href=\"index?dept=" + dept + "&coursenum=" + coursenum + "&area=" + area + "&title=" + title + "\">another class search </a>.";
+        html += "</p>";
+        html += "<hr>";      
         html += "</body>";
+
+        html += "<foot>";
+        html += "Created by Osita Ighodaro and Ben Musoke-Lubega";
+        html += "<hr>";
+        html += "</foot>";
+
         html += "</html>";
 
         return html;
