@@ -10,4 +10,4 @@ for jarfile in ~/lib/spark/*.jar; do
    cp=$cp:$jarfile
 done
 
-javac -cp $cp Reg.java "$@"
+javac -cp $cp "$@"
