@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.regex.Pattern;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.io.File;
 
 public class Database
@@ -33,26 +34,65 @@ public class Database
       connection.close();
    }
 
-  /* public ArrayList<CourseBasic> searchBasic(String author) throws Exception
+   public ArrayList<CourseBasic> searchBasic(String[] inputs) throws Exception
    {
-      ArrayList<Book> result = new ArrayList<Book>();
-  
-      PreparedStatement statement = connection.prepareStatement(
-         "select author, title, price from books where author like ?");
-      statement.setString(1, author + "%");
-      ResultSet resultSet = statement.executeQuery();
+        ArrayList<CourseBasic> results = new ArrayList<CourseBasic>();
 
-      while (resultSet.next())
-      {  
-         String foundAuthor = resultSet.getString("author");
-         String title = resultSet.getString("title");
-         double price = resultSet.getDouble("price");
-         Book book = new Book(foundAuthor, title, price);
-         result.add(book);
-      }
+        // Identifies search queries
+        String whereString = new String();
+       
+        // Read in queries
+        String value = "";
 
-      return result;
-   } */
+        value = "\"%" + inputs[0].toUpperCase() + "%\"";
+        whereString += " AND dept LIKE " + value;
+    
+        value = "\"%" + inputs[1].toUpperCase() + "%\"";
+        whereString += " AND coursenum LIKE " + value;
+    
+        value = "\"%" + inputs[2].toUpperCase() + "%\"";
+        whereString += " AND area LIKE " + value;
+    
+        value = "\"%" + inputs[3].toUpperCase() + "%\"";
+        whereString += " AND title LIKE " + value;
+       
+        try
+        {
+            String stmtStr = "SELECT classid, dept, coursenum, area, title  " + 
+            "FROM courses, classes, crosslistings " +
+            "WHERE courses.courseid = crosslistings.courseid " +
+            "AND classes.courseid = courses.courseid " +
+            "AND classes.courseid = crosslistings.courseid " +
+            whereString.toString() +
+            " ORDER BY dept, coursenum, classid;";
+
+            PreparedStatement statement = connection.prepareStatement(stmtStr);
+
+            ResultSet resultSet = statement.executeQuery();
+            
+
+            while (resultSet.next())
+            {
+                CourseBasic course;
+                String classid = resultSet.getString("classid");
+                String dept = resultSet.getString("dept");
+                String coursenum = resultSet.getString("coursenum");
+                String area = resultSet.getString("area");
+                String title = resultSet.getString("title");
+
+                course = new CourseBasic(dept, coursenum, area, title, classid);
+                results.add(course);
+            }
+
+            return results;
+        }
+        catch (Exception e) 
+        { 
+            System.err.println(e);
+        }
+   
+        return null;
+   }
 
    public CourseInfo searchDetails(String classid) throws Exception
    {
@@ -176,13 +216,19 @@ public class Database
    }
 
    // For testing:
-
    public static void main(String[] args) throws Exception
    {
-      Database database = new Database();
-      database.connect();
-      CourseInfo test = database.searchDetails("8361");
-      System.out.println(test);
-      database.disconnect();
+        String[] inputs = {"COS", "2", "", ""};
+        Database database = new Database();
+        database.connect();
+        CourseInfo test = database.searchDetails("9032");
+        ArrayList<CourseBasic> test2 = database.searchBasic(inputs);
+        //System.out.println(test);
+        for (CourseBasic course: test2)
+        {
+            System.out.println(course);
+        }
+
+        database.disconnect();
    }
 }
