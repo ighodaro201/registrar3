@@ -2,7 +2,7 @@
 
 #-----------------------------------------------------------------------
 # build
-# Author: Bob Dondero
+# Author: Osita Ighodaro Ben Musoke-Lubega
 #-----------------------------------------------------------------------
 
 cp=
@@ -10,4 +10,4 @@ for jarfile in ~/lib/spark/*.jar; do
    cp=$cp:$jarfile
 done
 
-javac -cp $cp RunServer.java "$@"
+javac -cp $cp Reg.java "$@"
