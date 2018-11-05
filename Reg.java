@@ -17,7 +17,8 @@ public class Reg
         String errorMsg = req.queryParams("errorMsg");
         if (errorMsg == null) serrorMsg = "";
                       
-        String html = "";
+        String html = ""; 
+        html += "<!DOCTYPE html>";
         html += "<html>";
         html += "<head>";
          html += "<title>Registrar's Office Class Search</title>";
@@ -26,7 +27,7 @@ public class Reg
         html += "<h1>Registrar's Office</h1>";
         html += "<h2>Class Search</h2>";
         html += "<hr>";
-        html += "<form action=\"searchresults\" method=\"get\">";
+        html += "<form action=\"index\" method=\"get\">";
         html += "<table>";
 
         html += "<tbody>";
@@ -34,7 +35,7 @@ public class Reg
         html += "<tr>";
         html += "<td>Dept:</td>";
         html += "<td>";
-        html += "<input type=\"text\" name=\"author\">";
+        html += "<input type=\"text\" name=\"dept\">";
         html += "<br>";
         html += "</td>";
         html += "</tr>";
@@ -84,7 +85,6 @@ public class Reg
         html += "<th> Area </th>";
         html += "<th> Title </th>";
         html += "</tr>";  
-        
 
         String dept = req.queryParams("dept");
         String coursenum = req.queryParams("coursenum");
@@ -92,7 +92,6 @@ public class Reg
         String title = req.queryParams("title");
 
         ArrayList<CourseBasic> courses = null;
-
         try
         {
             Database database = new Database();
@@ -111,9 +110,9 @@ public class Reg
             for (CourseBasic course : courses)
             {
                 html += "<tr>";
-                html += "<td>" + course.getClassId() + "</td>";
+                html += "<td>" + "<a href=\"regdetails?classid=" + course.getClassId + "\">" + course.getClassId() + "</a>" + "</td>";
                 html += "<td>" + course.getDept() + "</td>";
-                html += "<td>" + course.getNum() + "</td>";
+                html += "<td>" + course.getCourseNum() + "</td>";
                 html += "<td>" + course.getArea() + "</td>";
                 html += "<td>" + course.getTitle() + "</td>";
                 html += "</tr>";  
@@ -131,7 +130,8 @@ public class Reg
    {
         String classId = req.queryParams("classId");
 
-        String html = "";
+        String html = ""; 
+        html += "<!DOCTYPE html>";
         html += "<html>";
         html += "<head>";
          html += "<title>Registrar's Office Class Search</title>";
@@ -159,7 +159,13 @@ public class Reg
             return e.toString();
         }
 
+        html += "<hr>";
+        html += "Click here to do ";
+        html += "<a href=\"index\">another class search </a>.";
+        html += "<hr>";
 
+        html += "</body>";
+        html += "</html>";
 
    }
    public static void main(String[] args) 
