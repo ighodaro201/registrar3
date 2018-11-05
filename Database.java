@@ -95,10 +95,8 @@ public class Database
         catch (Exception e) 
         { 
             System.err.println(e);
-            System.err.println("BOI");
         }
    
-        System.err.println("Bruh");
         return results;
    }
 
