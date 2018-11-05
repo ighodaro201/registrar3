@@ -36,6 +36,7 @@ class CourseInfo implements Serializable
         this.area = area;
         this.title = title;
         this.descrip = descrip;
+        this.prereqs = prereqs;
     
         this.dept = new String[dept.length];
         this.courseNum = new String[courseNum.length];

@@ -15,11 +15,12 @@ import java.io.File;
 public class Database
 {
    private static final String DATABASE_NAME = "reg.sqlite";
-
    private Connection connection;
 
+   // Creates new Database object
    public Database() {}
 
+   // Connects to database
    public void connect() throws Exception
    {
       File databaseFile = new File(DATABASE_NAME);
@@ -29,11 +30,13 @@ public class Database
          DriverManager.getConnection("jdbc:sqlite:" + DATABASE_NAME);
    }
 
+   //Disconnects from database
    public void disconnect() throws Exception
    {
       connection.close();
    }
 
+   // Returns an ArrayList of all courses that match query info
    public ArrayList<CourseBasic> searchBasic(String[] inputs) throws Exception
    {
         ArrayList<CourseBasic> results = new ArrayList<CourseBasic>();
@@ -44,6 +47,7 @@ public class Database
         // Read in queries
         String value = "";
 
+        // Deals with wildcard literals and null entries in queries
         for (int i = 0; i < inputs.length; i++)
         {
             inputs[i] = inputs[i].replace("%", "\\%");
@@ -101,6 +105,7 @@ public class Database
         return results;
    }
 
+   // Returns CourseInfo on a specific class
    public CourseInfo searchDetails(String classid) throws Exception
    {
         try
