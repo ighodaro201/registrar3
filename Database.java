@@ -61,8 +61,6 @@ public class Database
     
         value = "\"%" + inputs[3].toUpperCase() + "%\"";
         whereString += " AND title LIKE " + value + " ESCAPE \"\\\"";
-
-        //System.out.println(whereString);
        
         try
         {
@@ -97,9 +95,11 @@ public class Database
         catch (Exception e) 
         { 
             System.err.println(e);
+            System.err.println("BOI");
         }
    
-        return null;
+        System.err.println("Bruh");
+        return results;
    }
 
    public CourseInfo searchDetails(String classid) throws Exception
