@@ -181,7 +181,11 @@ public class Reg
         html += "Course Details (course id " + info.getCourseID() + ")";
         html += "</h2>";
 
-       // html += "<b>Dept and Number: </b>" + info.getCourseID();
+        for (int i = 0; i < info.getDept().length; i++)
+        {
+            html += "<b>Dept and Number: </b>";
+            html += info.getDept()[i] + " " + info.getCourseNum()[i] + "<br>";
+        }
         
         html += "<b>Area: </b>" + info.getArea();
         html += "<br>";
@@ -191,7 +195,16 @@ public class Reg
         html += "<br>";
         html += "<b>Prerequisites: </b>" + info.getPrereqs();
         html += "<br>";
-        html += "<b>Professor(s): </b>" + info.getProfNames();
+        
+        html += "<b>Professor(s): </b>";
+        for (int i = 0; i < info.getProfNames().length; i++)
+        {
+            if (i == 0) {}
+            else if (i < info.getProfNames().length - 1) html += ", ";
+            else html += " and ";
+            html += info.getProfNames()[i];
+        }
+
         html += "<br>";
 
 
