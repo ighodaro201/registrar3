@@ -7,20 +7,20 @@ import java.io.Serializable;
 
 class CourseInfo implements Serializable
 {
-    String classid;
-    String courseid;
-    String days;
-    String startTime;
-    String endTime;
-    String bldg;
-    String roomNum;
-    String area;
-    String title;
-    String descrip;
-    String prereqs;
-    String[] dept;
-    String[] courseNum;
-    String[] profName;
+    private String classid;
+    private String courseid;
+    private String days;
+    private String startTime;
+    private String endTime;
+    private String bldg;
+    private String roomNum;
+    private String area;
+    private String title;
+    private String descrip;
+    private String prereqs;
+    private String[] dept;
+    private String[] courseNum;
+    private String[] profName;
 
     public CourseInfo(String classid, String courseid, String days, String startTime, String endTime, 
     String bldg, String roomNum, String area, String title, String descrip, String prereqs,

@@ -7,11 +7,11 @@ import java.io.Serializable;
 
 class CourseBasic implements Serializable
 {
-    String dept;
-    String coursenum;
-    String area;
-    String title;
-    String classid;
+    private String dept;
+    private String coursenum;
+    private String area;
+    private String title;
+    private String classid;
 
     public CourseBasic(String dept, String coursenum, String area, String title, String classid)
     {
