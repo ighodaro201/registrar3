@@ -80,7 +80,7 @@ public class Reg
         html += "<th> Dept </th>";
         html += "<th> Num </th>";
         html += "<th> Area </th>";
-        html += "<th> Title </th>";
+        html += "<th> <div style=\"text-align:left\"> Title </div> </th>";
         html += "</tr>";  
 
         String dept = req.queryParams("dept");
@@ -90,16 +90,16 @@ public class Reg
 
         String[] fields = {dept, coursenum, area, title};
 
-        ArrayList<CourseBasic> courses = null;
-        CourseInfo s = null;
+        for (int i = 0; i < fields.length; i++)
+            if (fields[i] == null) fields[i] = "";
 
-        
+        ArrayList<CourseBasic> courses = null;
+
         try
         {
             Database database = new Database();
             database.connect();
             courses = database.searchBasic(fields);
-           // s = database.searchDetails("8291");
             database.disconnect();
         }
         catch (Exception e)
@@ -107,7 +107,6 @@ public class Reg
             return e.toString();
         }
 
-        /*
         if (courses.size() == 0) html += "";
         else
         {
@@ -120,10 +119,9 @@ public class Reg
                 html += "<td>" + course.getArea() + "</td>";
                 html += "<td>" + course.getTitle() + "</td>";
                 html += "</tr>";  
-                html += "<br>";
+                //html += "<br>";
             }
-        } */
-
+        } 
         html += "</table>";
         html += "</body>";
         html += "</html>";
@@ -132,7 +130,7 @@ public class Reg
 
    private static String courseDetails(Request req, Response res) throws UnsupportedEncodingException
    {
-        String classId = req.queryParams("classId");
+        String classId = req.queryParams("classid");
 
         String html = ""; 
         html += "<!DOCTYPE html>";
@@ -147,10 +145,8 @@ public class Reg
         html += "<h2>";
         html += "Class Details (class id " + classId + ")";
         html += "</h2>";
-        html += "<br>";
 
         CourseInfo info = null;
-
         try
         {
             Database database = new Database();
@@ -162,6 +158,43 @@ public class Reg
         {
             return e.toString();
         }
+
+        html += "<b>Course Id: </b>" + info.getCourseID();
+        html += "<br>";
+
+        html += "<b>Days: </b>" + info.getDays();
+        html += "<br>";
+
+        html += "<b>Start time: </b>" + info.getStartTime();
+        html += "<br>";
+
+        html += "<b>End time: </b>" + info.getEndTime();
+        html += "<br>";
+
+        html += "<b>Building: </b>" + info.getBldg();
+        html += "<br>";
+
+        html += "<b>Room: </b>" + info.getRoomNum();
+        html += "<br>";
+        html += "<hr>";
+
+        html += "<h2>";
+        html += "Course Details (course id " + info.getCourseID() + ")";
+        html += "</h2>";
+
+       // html += "<b>Dept and Number: </b>" + info.getCourseID();
+        
+        html += "<b>Area: </b>" + info.getArea();
+        html += "<br>";
+        html += "<b>Title: </b>" + info.getTitle();
+        html += "<br>";
+        html += "<b>Description: </b>" + info.getDescrip();
+        html += "<br>";
+        html += "<b>Prerequisites: </b>" + info.getPrereqs();
+        html += "<br>";
+        html += "<b>Professor(s): </b>" + info.getProfNames();
+        html += "<br>";
+
 
         html += "<hr>";
         html += "Click here to do ";
