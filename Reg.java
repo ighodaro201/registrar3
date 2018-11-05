@@ -128,6 +128,13 @@ public class Reg
         } 
         html += "</table>";
         html += "</body>";
+
+        html += "<foot>";
+        html += "<hr>";
+        html += "Created by Osita Ighodaro and Ben Musoke-Lubega";
+        html += "<hr>";
+        html += "</foot>";
+        
         html += "</html>";
         return html;    
    }
@@ -145,7 +152,7 @@ public class Reg
         html += "<!DOCTYPE html>";
         html += "<html>";
         html += "<head>";
-         html += "<title>Registrar's Office Class Search</title>";
+        html += "<title>Registrar's Office Class Search</title>";
         html += "</head>";
         html += "<body>";
         html += "<h1>Registrar's Office</h1>";
@@ -215,15 +222,19 @@ public class Reg
             html += info.getProfNames()[i];
         }
 
-        html += "<br>";
-
-
         html += "<hr>";
+        html += "<p>";
         html += "Click here to do ";
         html += "<a href=\"index?dept=" + dept + "&coursenum=" + coursenum + "&area=" + area + "&title=" + title + "\">another class search </a>.";
-        html += "<hr>";
-
+        html += "</p>";
+        html += "<hr>";      
         html += "</body>";
+
+        html += "<foot>";
+        html += "Created by Osita Ighodaro and Ben Musoke-Lubega";
+        html += "<hr>";
+        html += "</foot>";
+
         html += "</html>";
 
         return html;
