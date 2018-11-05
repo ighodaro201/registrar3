@@ -6,8 +6,9 @@ a course that would be shown in the primary page. I also created a
 CourseInfo object that stores all the information on a course that
 would be stored on the secondary page that shows detailed info.
 I also created Database.java which handles all the database methods,
-such as connectinf and deisconnecting to the database, and searching
+such as connecting and disconnecting to the database, and searching
 the database to retrieve the courses and coursedetails needed.
+Also created some bash scripts to test compilation and execution.
 
 Ben Paragraph
 
