@@ -11,9 +11,18 @@ import java.net.URLEncoder;
 import java.io.UnsupportedEncodingException;
 
 public class Reg
-{
+{  
     private static String index(Request req, Response res)
     {             
+        String dept = req.queryParams("dept");
+        String coursenum = req.queryParams("coursenum");
+        String area = req.queryParams("area");
+        String title = req.queryParams("title");
+
+        String[] fields = {dept, coursenum, area, title};
+        for (int i = 0; i < fields.length; i++)
+            if (fields[i] == null) fields[i] = "";
+
         String html = ""; 
         html += "<!DOCTYPE html>";
         html += "<html>";
@@ -32,7 +41,7 @@ public class Reg
         html += "<tr>";
         html += "<td>Dept:</td>";
         html += "<td>";
-        html += "<input type=\"text\" name=\"dept\">";
+        html += "<input type=\"text\" name=\"dept\" value=\"" + fields[0] + "\">";
         html += "<br>";
         html += "</td>";
         html += "</tr>";
@@ -40,7 +49,7 @@ public class Reg
         html += "<tr>";
         html += "<td>Course Num:</td>";
         html += "<td>";
-        html += "<input type=\"text\" name=\"coursenum\">";
+        html += "<input type=\"text\" name=\"coursenum\" value=\"" + fields[1] + "\">";
         html += "<br>";
         html += "</td>";
         html += "</tr>";
@@ -48,7 +57,7 @@ public class Reg
         html += "<tr>";
         html += "<td>Area:</td>";
         html += "<td>";
-        html += "<input type=\"text\" name=\"area\">";
+        html += "<input type=\"text\" name=\"area\" value=\"" + fields[2] + "\">";
         html += "<br>";
         html += "</td>";
         html += "</tr>";
@@ -56,7 +65,7 @@ public class Reg
         html += "<tr>";
         html += "<td>Title:</td>";
         html += "<td>";
-        html += "<input type=\"text\" name=\"title\">";
+        html += "<input type=\"text\" name=\"title\" value=\"" + fields[3] + "\">";
         html += "<br>";
         html += "</td>";
         html += "</tr>";
@@ -82,16 +91,6 @@ public class Reg
         html += "<th> Area </th>";
         html += "<th> <div style=\"text-align:left\"> Title </div> </th>";
         html += "</tr>";  
-
-        String dept = req.queryParams("dept");
-        String coursenum = req.queryParams("coursenum");
-        String area = req.queryParams("area");
-        String title = req.queryParams("title");
-
-        String[] fields = {dept, coursenum, area, title};
-
-        for (int i = 0; i < fields.length; i++)
-            if (fields[i] == null) fields[i] = "";
 
         ArrayList<CourseBasic> courses = null;
 
