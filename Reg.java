@@ -13,23 +13,20 @@ import java.io.UnsupportedEncodingException;
 public class Reg
 {
     private static String index(Request req, Response res)
-    {
-        String errorMsg = req.queryParams("errorMsg");
-        if (errorMsg == null) serrorMsg = "";
-                      
+    {             
         String html = ""; 
         html += "<!DOCTYPE html>";
         html += "<html>";
         html += "<head>";
-         html += "<title>Registrar's Office Class Search</title>";
+        html += "<title>Registrar's Office Class Search</title>";
         html += "</head>";
         html += "<body>";
         html += "<h1>Registrar's Office</h1>";
         html += "<h2>Class Search</h2>";
         html += "<hr>";
+        
         html += "<form action=\"index\" method=\"get\">";
         html += "<table>";
-
         html += "<tbody>";
 
         html += "<tr>";
@@ -91,12 +88,18 @@ public class Reg
         String area = req.queryParams("area");
         String title = req.queryParams("title");
 
+        String[] fields = {dept, coursenum, area, title};
+
         ArrayList<CourseBasic> courses = null;
+        CourseInfo s = null;
+
+        
         try
         {
             Database database = new Database();
             database.connect();
-            courses = database.searchBasic(dept, coursenum, area, title);
+            courses = database.searchBasic(fields);
+           // s = database.searchDetails("8291");
             database.disconnect();
         }
         catch (Exception e)
@@ -104,13 +107,14 @@ public class Reg
             return e.toString();
         }
 
+        /*
         if (courses.size() == 0) html += "";
         else
         {
             for (CourseBasic course : courses)
             {
                 html += "<tr>";
-                html += "<td>" + "<a href=\"regdetails?classid=" + course.getClassId + "\">" + course.getClassId() + "</a>" + "</td>";
+                html += "<td>" + "<a href=\"regdetails?classid=" + course.getClassID() + "\">" + course.getClassID() + "</a>" + "</td>";
                 html += "<td>" + course.getDept() + "</td>";
                 html += "<td>" + course.getCourseNum() + "</td>";
                 html += "<td>" + course.getArea() + "</td>";
@@ -118,7 +122,7 @@ public class Reg
                 html += "</tr>";  
                 html += "<br>";
             }
-        }
+        } */
 
         html += "</table>";
         html += "</body>";
@@ -151,7 +155,7 @@ public class Reg
         {
             Database database = new Database();
             database.connect();
-            info = database.searchInfo(classId);
+            info = database.searchDetails(classId);
             database.disconnect();
         }
         catch (Exception e)
@@ -166,6 +170,8 @@ public class Reg
 
         html += "</body>";
         html += "</html>";
+
+        return html;
 
    }
    public static void main(String[] args) 
@@ -189,6 +195,5 @@ public class Reg
       Spark.get("/regdetails",
          (req, res) -> courseDetails(req, res)
       );
-      
    }
 }
