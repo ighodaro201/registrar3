@@ -44,17 +44,25 @@ public class Database
         // Read in queries
         String value = "";
 
+        for (int i = 0; i < inputs.length; i++)
+        {
+            inputs[i] = inputs[i].replace("%", "\\%");
+            inputs[i] = inputs[i].replace("_", "\\_");
+        }
+
         value = "\"%" + inputs[0].toUpperCase() + "%\"";
-        whereString += " AND dept LIKE " + value;
+        whereString += " AND dept LIKE " + value + " ESCAPE \"\\\"";
     
         value = "\"%" + inputs[1].toUpperCase() + "%\"";
-        whereString += " AND coursenum LIKE " + value;
+        whereString += " AND coursenum LIKE " + value + " ESCAPE \"\\\"";
     
         value = "\"%" + inputs[2].toUpperCase() + "%\"";
-        whereString += " AND area LIKE " + value;
+        whereString += " AND area LIKE " + value + " ESCAPE \"\\\"";
     
         value = "\"%" + inputs[3].toUpperCase() + "%\"";
-        whereString += " AND title LIKE " + value;
+        whereString += " AND title LIKE " + value + " ESCAPE \"\\\"";
+
+        //System.out.println(whereString);
        
         try
         {
@@ -218,7 +226,7 @@ public class Database
    // For testing:
    public static void main(String[] args) throws Exception
    {
-        String[] inputs = {"_AS", "", "", ""};
+        String[] inputs = {"EAS", "2", "", ""};
         Database database = new Database();
         database.connect();
         CourseInfo test = database.searchDetails("9032");
