@@ -6,10 +6,11 @@ a course that would be shown in the primary page. I also created a
 CourseInfo object that stores all the information on a course that
 would be stored on the secondary page that shows detailed info.
 I also created Database.java which handles all the database methods,
-such as connectinf and deisconnecting to the database, and searching
+such as connecting and disconnecting to the database, and searching
 the database to retrieve the courses and coursedetails needed.
 
-Ben Paragraph
+I (Ben) primarly worked on our Reg.java program which utilized the Spark 
+library to serve as our server.
 
 We did not receive any help
 
@@ -19,5 +20,3 @@ It helped with my confidence in coding generally, and helped me further
 understand bash scripts. It also helped me see more clearly how to 
 modularise.
 
-We did not make a footer with our names at the bottom of the pages
-(Delete this once we've implemented it)
