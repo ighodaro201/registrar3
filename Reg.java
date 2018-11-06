@@ -9,6 +9,7 @@ import spark.Response;
 import java.util.ArrayList;
 import java.net.URLEncoder;
 import java.io.UnsupportedEncodingException;
+import java.util.regex.Pattern;
 
 public class Reg
 {  
@@ -123,7 +124,6 @@ public class Reg
                 html += "<td>" + course.getArea() + "</td>";
                 html += "<td>" + course.getTitle() + "</td>";
                 html += "</tr>";  
-                //html += "<br>";
             }
         } 
         html += "</table>";
@@ -156,11 +156,6 @@ public class Reg
         html += "</head>";
         html += "<body>";
         html += "<h1>Registrar's Office</h1>";
-        html += "<hr>";
-        
-        html += "<h2>";
-        html += "Class Details (class id " + classId + ")";
-        html += "</h2>";
 
         CourseInfo info = null;
         try
@@ -174,6 +169,28 @@ public class Reg
         {
             return e.toString();
         }
+
+        if (info == null)
+        {
+            html += "<p>";
+            if (classId == null || classId == "") html += "Missing class id";
+            else if (Pattern.matches("[0-9]*", classId)) html += "Class id " + classId + " does not exist.";
+            else html += "Class id is not numeric";
+            html += "</p>";
+            html += "<hr>";
+            html += "<foot>";
+            html += "Created by Osita Ighodaro and Ben Musoke-Lubega";
+            html += "<hr>";
+            html += "</foot>";
+            html += "</html>";
+
+            return html;
+        }
+
+        html += "<hr>";
+        html += "<h2>";
+        html += "Class Details (class id " + classId + ")";
+        html += "</h2>";
 
         html += "<b>Course Id: </b>" + info.getCourseID();
         html += "<br>";
