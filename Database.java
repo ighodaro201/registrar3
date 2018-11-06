@@ -120,6 +120,8 @@ public class Database
                 throw new Exception("regdetails: classid is not an integer");
             }
 
+            if (classid.length() == 0) throw new Exception("regdetails: missing classid");
+
             String stmtStr = "SELECT courses.courseid, days, starttime, endtime, bldg, roomnum, area, title, " +
                 "descrip, prereqs " + 
                 "FROM courses, classes " +
@@ -233,7 +235,7 @@ public class Database
         String[] inputs = {"EAS", "2", "", ""};
         Database database = new Database();
         database.connect();
-        CourseInfo test = database.searchDetails("8231");
+        CourseInfo test = database.searchDetails("9032");
         ArrayList<CourseBasic> test2 = database.searchBasic(inputs);
         
         for (CourseBasic course: test2)
