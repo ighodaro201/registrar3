@@ -8,6 +8,7 @@ would be stored on the secondary page that shows detailed info.
 I also created Database.java which handles all the database methods,
 such as connecting and disconnecting to the database, and searching
 the database to retrieve the courses and coursedetails needed.
+Also created some bash scripts to test compilation and execution.
 
 I (Ben) primarly worked on our Reg.java program which utilized the Spark 
 library to serve as our server.
